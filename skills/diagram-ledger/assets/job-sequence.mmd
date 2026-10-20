@@ -1,0 +1,22 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant API as Export API
+    participant Queue as Job queue
+    participant Worker as Export worker
+    participant Store as Result store
+    User->>API: Request export
+    API->>Queue: Enqueue job
+    Queue-->>API: Accepted with job ID
+    API-->>User: Job accepted (not complete)
+    Queue->>Worker: Deliver job
+    alt Export succeeds
+        Worker->>Store: Save result
+        Worker->>API: Record completed status + result ID
+        Worker-->>Queue: Acknowledge job
+    else Export fails
+        Worker->>API: Record failed status
+        Worker-->>Queue: Acknowledge terminal failure
+    end
+    User->>API: Get job status
+    API-->>User: Status and result ID if complete

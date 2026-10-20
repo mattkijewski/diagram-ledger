@@ -1,0 +1,38 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="review-flow" name="Review flow">
+    <mxGraphModel page="1" pageWidth="1100" pageHeight="700">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="draft" value="Draft" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fillColor=#F1F3F5;strokeColor=#243B3B;fontColor=#172033;">
+          <mxGeometry x="80" y="120" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="review" value="Review" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fillColor=#FFF3BF;strokeColor=#243B3B;fontColor=#172033;">
+          <mxGeometry x="430" y="120" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="published" value="Published" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fillColor=#D3F9D8;strokeColor=#243B3B;fontColor=#172033;">
+          <mxGeometry x="780" y="120" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="revise" value="Revise" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fillColor=#E7F5FF;strokeColor=#243B3B;fontColor=#172033;">
+          <mxGeometry x="430" y="350" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="submit" value="Submit" edge="1" parent="1" source="draft" target="review" style="edgeStyle=orthogonalEdgeStyle;html=0;endArrow=block;endFill=1;fontSize=16;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="approve" value="Approved" edge="1" parent="1" source="review" target="published" style="edgeStyle=orthogonalEdgeStyle;html=0;endArrow=block;endFill=1;fontSize=16;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edits" value="Needs edits" edge="1" parent="1" source="review" target="revise" style="edgeStyle=orthogonalEdgeStyle;html=0;endArrow=block;endFill=1;fontSize=16;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="return" value="Return to draft" edge="1" parent="1" source="revise" target="draft" style="edgeStyle=orthogonalEdgeStyle;html=0;endArrow=block;endFill=1;fontSize=16;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

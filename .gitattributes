@@ -1,0 +1,4 @@
+# Receipt hashes bind exact source bytes; keep text checkouts consistent on every OS.
+* text=auto eol=lf
+*.png binary
+*.zip binary

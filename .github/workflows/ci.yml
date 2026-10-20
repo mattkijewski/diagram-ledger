@@ -1,0 +1,52 @@
+name: Checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  core:
+    name: Core (${{ matrix.os }}, Python ${{ matrix.python }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Python 3.9 is unavailable on the newer Ubuntu 26 runner image.
+          - os: ubuntu-22.04
+            python: '3.9'
+          - os: ubuntu-latest
+            python: '3.14'
+          - os: windows-latest
+            python: '3.14'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run core regression tests (browser cases are explicitly skipped)
+        run: python scripts/run_tests.py
+      - name: Build archives
+        run: python scripts/build_release.py
+      - name: Verify archives and bundled receipts
+        run: python scripts/verify_release.py
+      - name: Verify gallery rebuild from the public checkout
+        run: python scripts/build_gallery.py
+  browser:
+    name: Browser regression tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14'
+      - name: Install optional preview dependency
+        run: |
+          npm install --prefix "$RUNNER_TEMP/diagram-ledger-tools" playwright@1.62.1
+          echo "DIAGRAM_LEDGER_NODE_MODULES=$RUNNER_TEMP/diagram-ledger-tools/node_modules" >> "$GITHUB_ENV"
+      - name: Run all tests using the runner's installed Chrome
+        env:
+          DIAGRAM_LEDGER_BROWSER_TESTS: '1'
+        run: python scripts/run_tests.py

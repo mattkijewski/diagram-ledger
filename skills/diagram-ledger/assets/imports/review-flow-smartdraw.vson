@@ -1,0 +1,82 @@
+{
+  "Version": "1.0",
+  "Template": "Flowchart",
+  "Shape": {
+    "ID": 1,
+    "Label": "Draft",
+    "ShapeType": "RRect",
+    "FillColor": "#F1F3F5",
+    "TextColor": "#172033",
+    "TextSize": 16,
+    "MinWidth": 180,
+    "MinHeight": 80,
+    "ShapeConnector": [
+      {
+        "ShapeConnectorType": "Flowchart",
+        "Direction": "Right",
+        "EndArrow": 1,
+        "Shapes": [
+          {
+            "ID": 2,
+            "Label": "Review",
+            "ShapeType": "RRect",
+            "FillColor": "#FFF3BF",
+            "TextColor": "#172033",
+            "TextSize": 16,
+            "MinWidth": 180,
+            "MinHeight": 80,
+            "LineLabel": "Submit",
+            "ShapeConnector": [
+              {
+                "ShapeConnectorType": "Flowchart",
+                "Direction": "Right",
+                "EndArrow": 1,
+                "Shapes": [
+                  {
+                    "ID": 3,
+                    "Label": "Published",
+                    "ShapeType": "RRect",
+                    "FillColor": "#D3F9D8",
+                    "TextColor": "#172033",
+                    "TextSize": 16,
+                    "MinWidth": 180,
+                    "MinHeight": 80,
+                    "LineLabel": "Approved"
+                  }
+                ]
+              },
+              {
+                "ShapeConnectorType": "Flowchart",
+                "Direction": "Bottom",
+                "EndArrow": 1,
+                "Shapes": [
+                  {
+                    "ID": 4,
+                    "Label": "Revise",
+                    "ShapeType": "RRect",
+                    "FillColor": "#E7F5FF",
+                    "TextColor": "#172033",
+                    "TextSize": 16,
+                    "MinWidth": 180,
+                    "MinHeight": 80,
+                    "LineLabel": "Needs edits"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Returns": [
+    {
+      "StartID": 4,
+      "EndID": 1,
+      "StartDirection": "Left",
+      "EndDirection": "Bottom",
+      "Label": "Return to draft",
+      "EndArrow": 1
+    }
+  ]
+}

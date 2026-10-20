@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="main" name="Webhook delivery">
+    <mxGraphModel page="1" pageWidth="1180" pageHeight="650" background="#f7f8f3">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Webhook delivery" vertex="1" parent="1" style="text;html=0;align=left;verticalAlign=middle;fontSize=34;fontStyle=1;fontColor=#172e36;fontFamily=Arial;">
+          <mxGeometry x="48" y="36" width="1084" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="A precise change to an existing system map" vertex="1" parent="1" style="text;html=0;align=left;fontSize=16;fontColor=#48636b;fontFamily=Arial;">
+          <mxGeometry x="48" y="96" width="1084" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="platform" value="DELIVERY PLATFORM" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#edf2eb;strokeColor=#b9c9c1;verticalAlign=top;align=left;spacingTop=14;spacingLeft=24;fontSize=13;fontStyle=1;fontColor=#42665f;">
+          <mxGeometry x="310" y="155" width="560" height="405" as="geometry" />
+        </mxCell>
+        <mxCell id="publisher" value="Publisher&#10;Emits an event" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;">
+          <mxGeometry x="65" y="195" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="inbox" value="Event inbox&#10;Durable queue" vertex="1" parent="platform" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;">
+          <mxGeometry x="35" y="40" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="delivery" value="Delivery worker&#10;Sends the webhook" vertex="1" parent="platform" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;">
+          <mxGeometry x="315" y="40" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="endpoint" value="Subscriber&#10;External endpoint" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;">
+          <mxGeometry x="905" y="195" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="quarantine" value="Quarantine&#10;Retains rejected events" vertex="1" parent="platform" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;">
+          <mxGeometry x="315" y="270" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="publish" value="event" edge="1" parent="1" source="publisher" target="inbox" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#48636b;fontColor=#48636b;fontSize=13;labelBackgroundColor=#f7f8f3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="consume" value="pull" edge="1" parent="1" source="inbox" target="delivery" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#48636b;fontColor=#48636b;fontSize=13;labelBackgroundColor=#f7f8f3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="send" value="POST" edge="1" parent="1" source="delivery" target="endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#48636b;fontColor=#48636b;fontSize=13;labelBackgroundColor=#f7f8f3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="reject" value="rejected" edge="1" parent="1" source="delivery" target="quarantine" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#48636b;fontColor=#48636b;fontSize=13;labelBackgroundColor=#f7f8f3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="footer" value="Solid arrow: event movement. Illustrative architecture; no delivery guarantee implied." vertex="1" parent="1" style="text;html=0;align=left;fontSize=14;fontColor=#48636b;fontFamily=Arial;">
+          <mxGeometry x="48" y="590" width="1084" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

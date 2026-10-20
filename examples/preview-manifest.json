@@ -1,0 +1,26 @@
+[
+  {
+    "file": "previews/svg-before.png",
+    "sha256": "9db7090bcc764bc4fa6e7d173cace64b89ec1e539a8bda5b53cb542d8e242a55"
+  },
+  {
+    "file": "previews/svg-after.png",
+    "sha256": "82e0017353722d3801966362217f85102eace18381f24c29f7748be7c71541f9"
+  },
+  {
+    "file": "previews/drawio-before.png",
+    "sha256": "2a68577d2663588f6e013924a4f3b84f426349f153823bb2824ee2852e5a17c0"
+  },
+  {
+    "file": "previews/drawio-after.png",
+    "sha256": "21563c320b788e62c4ae205e0c1b4e2f7dd36bb71af78202069b22c83eac9113"
+  },
+  {
+    "file": "previews/publish-sequence.png",
+    "sha256": "4d931e2ae8b07f26d52157719044e5f301dd0e1ea6266704235fb3cd70fa19db"
+  },
+  {
+    "file": "previews/excalidraw.png",
+    "sha256": "8dda51c3a7b6db9216428d1d2f797271986d3e0396217e9cac4bafba01b2a206"
+  }
+]

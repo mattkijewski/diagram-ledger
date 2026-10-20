@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "baseline_sha256": "e2dd8d896d9416146e83013eb5cc57452821982995e3604cd0d7bc790a288ef9",
+  "intent": "Rename Dispatcher and retain rejected events in a quarantine",
+  "allow": {
+    "node:main/delivery": [
+      "label"
+    ],
+    "node:main/quarantine": [
+      "added"
+    ],
+    "edge:main/reject": [
+      "added"
+    ]
+  },
+  "require": [
+    {
+      "entity": "node:main/delivery",
+      "field": "label",
+      "equals": "Delivery worker\nSends the webhook"
+    },
+    {
+      "entity": "node:main/quarantine",
+      "field": "membership",
+      "equals": "platform"
+    },
+    {
+      "entity": "edge:main/reject",
+      "field": "source",
+      "equals": "delivery"
+    },
+    {
+      "entity": "edge:main/reject",
+      "field": "target",
+      "equals": "quarantine"
+    },
+    {
+      "entity": "edge:main/reject",
+      "field": "label",
+      "equals": "rejected"
+    }
+  ]
+}

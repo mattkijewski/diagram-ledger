@@ -1,0 +1,359 @@
+{
+  "version": 1,
+  "status": "pass",
+  "intent": "Rename Dispatcher and retain rejected events in a quarantine",
+  "before_sha256": "e200dfa53b62f5f54c8ba3179a9a5502e4ede089404677f79b73e363a6e3ea75",
+  "after_sha256": "e6ebd8ca96b49f91b3a4b90585ae3195a092b0f2fcd78a2a3b5490fc8e456e1f",
+  "contract_sha256": "981d6b47d5904486b5aa58b3be988d0878ba9e9a8909a5b979419a307eb60522",
+  "format": "svg",
+  "coverage": "Annotated SVG entities; exact source geometry/style and declared relationships. Remaining XML is protected as document content. Does not prove visual layout or infer relationships from arrow pixels.",
+  "changes": [
+    {
+      "entity": "edge:reject",
+      "field": "added",
+      "before": null,
+      "after": {
+        "label": "rejected",
+        "geometry": [
+          [
+            0,
+            "g",
+            {}
+          ],
+          [
+            1,
+            "path",
+            {
+              "d": "M730 285V425"
+            }
+          ],
+          [
+            2,
+            "text",
+            {
+              "x": "770",
+              "y": "354"
+            }
+          ]
+        ],
+        "style": [
+          [
+            0,
+            "g",
+            {}
+          ],
+          [
+            1,
+            "path",
+            {
+              "fill": "none",
+              "marker-end": "url(#arrow)",
+              "stroke": "#48636b",
+              "stroke-width": "2"
+            }
+          ],
+          [
+            2,
+            "text",
+            {
+              "fill": "#48636b",
+              "font-size": "13",
+              "text-anchor": "middle"
+            }
+          ]
+        ],
+        "membership": {
+          "within": [],
+          "outside": [],
+          "ancestors": [
+            [
+              "svg",
+              null,
+              0
+            ],
+            [
+              "g",
+              null,
+              4
+            ]
+          ],
+          "untracked_siblings_before": 3
+        },
+        "source": "delivery",
+        "target": "quarantine",
+        "content": [
+          "g",
+          {
+            "data-edge": "reject"
+          },
+          "",
+          [
+            [
+              [
+                "path",
+                {
+                  "data-route": ""
+                },
+                "",
+                []
+              ],
+              ""
+            ],
+            [
+              [
+                "text",
+                {},
+                "",
+                []
+              ],
+              ""
+            ]
+          ]
+        ]
+      },
+      "allowed": true
+    },
+    {
+      "entity": "node:delivery",
+      "field": "label",
+      "before": "Dispatcher Sends the webhook",
+      "after": "Delivery worker Sends the webhook",
+      "allowed": true
+    },
+    {
+      "entity": "node:quarantine",
+      "field": "added",
+      "before": null,
+      "after": {
+        "label": "Quarantine Retains rejected events",
+        "geometry": [
+          [
+            0,
+            "g",
+            {}
+          ],
+          [
+            1,
+            "rect",
+            {
+              "height": "90",
+              "rx": "12",
+              "width": "210",
+              "x": "625",
+              "y": "425"
+            }
+          ],
+          [
+            2,
+            "text",
+            {
+              "x": "645",
+              "y": "461"
+            }
+          ],
+          [
+            3,
+            "text",
+            {
+              "x": "645",
+              "y": "488"
+            }
+          ]
+        ],
+        "style": [
+          [
+            0,
+            "g",
+            {}
+          ],
+          [
+            1,
+            "rect",
+            {
+              "fill": "#e1eee6",
+              "stroke": "#789089"
+            }
+          ],
+          [
+            2,
+            "text",
+            {
+              "font-size": "18",
+              "font-weight": "700"
+            }
+          ],
+          [
+            3,
+            "text",
+            {
+              "fill": "#48636b",
+              "font-size": "14"
+            }
+          ]
+        ],
+        "membership": {
+          "within": [
+            "platform"
+          ],
+          "outside": [],
+          "ancestors": [
+            [
+              "svg",
+              null,
+              0
+            ],
+            [
+              "g",
+              null,
+              4
+            ]
+          ],
+          "untracked_siblings_before": 3
+        },
+        "source": null,
+        "target": null,
+        "content": [
+          "g",
+          {
+            "data-node": "quarantine",
+            "id": "quarantine"
+          },
+          "",
+          [
+            [
+              [
+                "rect",
+                {
+                  "data-body": ""
+                },
+                "",
+                []
+              ],
+              ""
+            ],
+            [
+              [
+                "text",
+                {},
+                "",
+                []
+              ],
+              ""
+            ],
+            [
+              [
+                "text",
+                {},
+                "",
+                []
+              ],
+              ""
+            ]
+          ]
+        ]
+      },
+      "allowed": true
+    }
+  ],
+  "requirements": [
+    {
+      "rule": {
+        "entity": "node:delivery",
+        "field": "label",
+        "equals": "Delivery worker Sends the webhook"
+      },
+      "actual": "Delivery worker Sends the webhook",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "node:quarantine",
+        "field": "membership",
+        "equals": {
+          "within": [
+            "platform"
+          ],
+          "outside": [],
+          "ancestors": [
+            [
+              "svg",
+              null,
+              0
+            ],
+            [
+              "g",
+              null,
+              4
+            ]
+          ],
+          "untracked_siblings_before": 3
+        }
+      },
+      "actual": {
+        "within": [
+          "platform"
+        ],
+        "outside": [],
+        "ancestors": [
+          [
+            "svg",
+            null,
+            0
+          ],
+          [
+            "g",
+            null,
+            4
+          ]
+        ],
+        "untracked_siblings_before": 3
+      },
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "edge:reject",
+        "field": "source",
+        "equals": "delivery"
+      },
+      "actual": "delivery",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "edge:reject",
+        "field": "target",
+        "equals": "quarantine"
+      },
+      "actual": "quarantine",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "edge:reject",
+        "field": "label",
+        "equals": "rejected"
+      },
+      "actual": "rejected",
+      "passed": true
+    }
+  ],
+  "unused_allowances": [],
+  "unchanged_entities": [
+    "container:platform",
+    "document:root",
+    "edge:consume",
+    "edge:publish",
+    "edge:send",
+    "node:endpoint",
+    "node:inbox",
+    "node:publisher"
+  ],
+  "counts": {
+    "before": 8,
+    "after": 10,
+    "changes": 3,
+    "unexpected": 0,
+    "unused_allowances": 0
+  }
+}

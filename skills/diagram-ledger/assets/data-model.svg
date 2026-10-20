@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="ordering-title ordering-desc">
+<title id="ordering-title">Ordering data</title><desc id="ordering-desc">Each order has one customer, while a customer can have zero or many orders. An order has one or more order items; each item belongs to one order and references one product. A product can occur in zero or many order items. OrderItem has a composite primary key of order_id and product_id.</desc>
+<rect width="1200" height="800" fill="#F8FAFC"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#172033">
+<text x="64" y="64" font-size="32" font-weight="700">Ordering data</text>
+<text x="64" y="100" font-size="16" fill="#475569">Logical relationships with explicit optionality</text>
+<g data-edge="customer-orders" data-from="customer" data-to="order">
+<path data-route="" d="M344 240 H680" fill="none" stroke="#64748B" stroke-width="2"/>
+<text x="360" y="224" font-size="16">1</text><text x="628" y="224" font-size="16">0..*</text>
+</g>
+<g data-edge="order-items" data-from="order" data-to="order-item">
+<path data-route="" d="M840 352 V480" fill="none" stroke="#64748B" stroke-width="2"/>
+<text x="856" y="380" font-size="16">1</text><text x="856" y="464" font-size="16">1..*</text>
+</g>
+<g data-edge="product-items" data-from="product" data-to="order-item">
+<path data-route="" d="M344 560 H680" fill="none" stroke="#64748B" stroke-width="2"/>
+<text x="360" y="544" font-size="16">1</text><text x="628" y="544" font-size="16">0..*</text>
+</g>
+<g id="customer" data-node="customer">
+<rect data-body="" x="64" y="160" width="280" height="152" rx="6" fill="#FFFFFF" stroke="#64748B" stroke-width="2"/>
+<text x="84" y="196" font-size="20" font-weight="700" fill="#155E75">Customer</text><path d="M80 212 H328" stroke="#64748B"/>
+<text x="84" y="246" font-size="16">customer_id · PK</text><text x="84" y="278" font-size="16">email · UNIQUE</text>
+</g>
+<g id="order" data-node="order">
+<rect data-body="" x="680" y="160" width="320" height="192" rx="6" fill="#FFFFFF" stroke="#64748B" stroke-width="2"/>
+<text x="700" y="196" font-size="20" font-weight="700" fill="#155E75">Order</text><path d="M696 212 H984" stroke="#64748B"/>
+<text x="700" y="246" font-size="16">order_id · PK</text><text x="700" y="278" font-size="16">customer_id · FK, NOT NULL</text><text x="700" y="310" font-size="16">placed_at</text>
+</g>
+<g id="product" data-node="product">
+<rect data-body="" x="64" y="480" width="280" height="152" rx="6" fill="#FFFFFF" stroke="#64748B" stroke-width="2"/>
+<text x="84" y="516" font-size="20" font-weight="700" fill="#155E75">Product</text><path d="M80 532 H328" stroke="#64748B"/>
+<text x="84" y="566" font-size="16">product_id · PK</text><text x="84" y="598" font-size="16">name</text>
+</g>
+<g id="order-item" data-node="order-item">
+<rect data-body="" x="680" y="480" width="320" height="192" rx="6" fill="#FFFFFF" stroke="#64748B" stroke-width="2"/>
+<text x="700" y="516" font-size="20" font-weight="700" fill="#155E75">OrderItem</text><path d="M696 532 H984" stroke="#64748B"/>
+<text x="700" y="566" font-size="16">order_id · PK/FK</text><text x="700" y="598" font-size="16">product_id · PK/FK</text><text x="700" y="630" font-size="16">quantity</text>
+</g>
+<text x="64" y="728" font-size="16" fill="#475569">1 = exactly one · 0..* = zero or many · 1..* = one or many</text>
+<text x="64" y="760" font-size="16" fill="#475569">OrderItem composite primary key: (order_id, product_id). Endpoint labels apply to the adjacent entity.</text>
+</g></svg>

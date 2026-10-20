@@ -1,0 +1,28 @@
+sequenceDiagram
+    autonumber
+    participant E as Editor
+    participant P as Publish API
+    participant D as Publication store
+    participant W as Notification worker
+    participant S as Subscriber
+    E->>P: Publish draft (request key)
+    P->>D: Look up request key
+    alt Request already committed
+        D-->>P: Existing publication ID
+        P-->>E: Existing publication ID
+    else New request
+        P->>D: Transaction: publication + request key + outbox event
+        D-->>P: Commit confirmed
+        P-->>E: Publication ID
+    end
+    Note over D,W: Outbox delivery is asynchronous
+    W->>D: Claim pending event
+    D-->>W: Event and stable event ID
+    W->>S: Notify (event ID)
+    alt Subscriber acknowledges
+        S-->>W: Acknowledgement
+        W->>D: Mark event delivered
+    else Timeout or rejection
+        Note over W,D: Keep event pending for retry
+        Note over W,S: Subscriber must deduplicate<br/>repeated event IDs
+    end

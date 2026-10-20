@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "status": "pass",
+  "intent": "Rename Dispatcher and retain rejected events in a quarantine",
+  "before_sha256": "e2dd8d896d9416146e83013eb5cc57452821982995e3604cd0d7bc790a288ef9",
+  "after_sha256": "9e092971acd7790049d349495f5c6338cd2bf002efb48013c0eecf6e1444dfde",
+  "contract_sha256": "f8345fb143deb40c69b754ffbe35dac58541f39e750e305e60a0835b3e11f010",
+  "format": "drawio",
+  "coverage": "Uncompressed draw.io cells on every page; page-qualified IDs, labels, parents, endpoints, geometry and style. Page/model metadata is protected. No visual or architecture-truth guarantee.",
+  "changes": [
+    {
+      "entity": "edge:main/reject",
+      "field": "added",
+      "before": null,
+      "after": {
+        "label": "rejected",
+        "geometry": [
+          [
+            "mxGeometry",
+            {
+              "as": "geometry",
+              "relative": "1"
+            },
+            "",
+            []
+          ]
+        ],
+        "style": "edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#48636b;fontColor=#48636b;fontSize=13;labelBackgroundColor=#f7f8f3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;",
+        "membership": "1",
+        "source": "delivery",
+        "target": "quarantine",
+        "content": [
+          "mxCell",
+          {
+            "edge": "1",
+            "id": "reject"
+          },
+          "",
+          []
+        ]
+      },
+      "allowed": true
+    },
+    {
+      "entity": "node:main/delivery",
+      "field": "label",
+      "before": "Dispatcher\nSends the webhook",
+      "after": "Delivery worker\nSends the webhook",
+      "allowed": true
+    },
+    {
+      "entity": "node:main/quarantine",
+      "field": "added",
+      "before": null,
+      "after": {
+        "label": "Quarantine\nRetains rejected events",
+        "geometry": [
+          [
+            "mxGeometry",
+            {
+              "as": "geometry",
+              "height": "90",
+              "width": "210",
+              "x": "315",
+              "y": "270"
+            },
+            "",
+            []
+          ]
+        ],
+        "style": "rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;",
+        "membership": "platform",
+        "source": null,
+        "target": null,
+        "content": [
+          "mxCell",
+          {
+            "id": "quarantine",
+            "vertex": "1"
+          },
+          "",
+          []
+        ]
+      },
+      "allowed": true
+    }
+  ],
+  "requirements": [
+    {
+      "rule": {
+        "entity": "node:main/delivery",
+        "field": "label",
+        "equals": "Delivery worker\nSends the webhook"
+      },
+      "actual": "Delivery worker\nSends the webhook",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "node:main/quarantine",
+        "field": "membership",
+        "equals": "platform"
+      },
+      "actual": "platform",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "edge:main/reject",
+        "field": "source",
+        "equals": "delivery"
+      },
+      "actual": "delivery",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "edge:main/reject",
+        "field": "target",
+        "equals": "quarantine"
+      },
+      "actual": "quarantine",
+      "passed": true
+    },
+    {
+      "rule": {
+        "entity": "edge:main/reject",
+        "field": "label",
+        "equals": "rejected"
+      },
+      "actual": "rejected",
+      "passed": true
+    }
+  ],
+  "unused_allowances": [],
+  "unchanged_entities": [
+    "document:root",
+    "edge:main/consume",
+    "edge:main/publish",
+    "edge:main/send",
+    "layer:main/0",
+    "layer:main/1",
+    "node:main/endpoint",
+    "node:main/footer",
+    "node:main/inbox",
+    "node:main/platform",
+    "node:main/publisher",
+    "node:main/subtitle",
+    "node:main/title"
+  ],
+  "counts": {
+    "before": 13,
+    "after": 15,
+    "changes": 3,
+    "unexpected": 0,
+    "unused_allowances": 0
+  }
+}

@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diagram Ledger · Revision report</title><style>body{font:16px/1.6 system-ui,sans-serif;color:#172a32;background:#f4f5f0;margin:0;padding:40px}main{max-width:1100px;margin:auto}h1{font-size:40px;line-height:1.15}small{color:#41545b}table{width:100%;border-collapse:collapse;background:white}td,th{text-align:left;padding:12px;border-bottom:1px solid #d7ded9;vertical-align:top}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}code{overflow-wrap:anywhere}a{color:#146052}.status{font-size:22px;font-weight:700}section{margin-top:32px}</style><main><small>DIAGRAM LEDGER / REVISION RECEIPT</small><h1>Rename Dispatcher and retain rejected events in a quarantine</h1><p class="status">PASS · 3 changes · 0 unexpected</p><p>Uncompressed draw.io cells on every page; page-qualified IDs, labels, parents, endpoints, geometry and style. Page/model metadata is protected. No visual or architecture-truth guarantee.</p><p><a href="before.drawio">Original source</a> · <a href="after.drawio">Revised source</a> · <a href="report.json">Machine-readable report</a> · <a href="contract.json">Contract</a></p><section><h2>Changes</h2><table><thead><tr><th>Entity</th><th>Field</th><th>Decision</th><th>Evidence</th></tr></thead><tbody><tr><td>edge:main/reject</td><td>added</td><td>Allowed</td><td><details><summary>Inspect values</summary><pre>{
+  &quot;before&quot;: null,
+  &quot;after&quot;: {
+    &quot;label&quot;: &quot;rejected&quot;,
+    &quot;geometry&quot;: [
+      [
+        &quot;mxGeometry&quot;,
+        {
+          &quot;as&quot;: &quot;geometry&quot;,
+          &quot;relative&quot;: &quot;1&quot;
+        },
+        &quot;&quot;,
+        []
+      ]
+    ],
+    &quot;style&quot;: &quot;edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#48636b;fontColor=#48636b;fontSize=13;labelBackgroundColor=#f7f8f3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;&quot;,
+    &quot;membership&quot;: &quot;1&quot;,
+    &quot;source&quot;: &quot;delivery&quot;,
+    &quot;target&quot;: &quot;quarantine&quot;,
+    &quot;content&quot;: [
+      &quot;mxCell&quot;,
+      {
+        &quot;edge&quot;: &quot;1&quot;,
+        &quot;id&quot;: &quot;reject&quot;
+      },
+      &quot;&quot;,
+      []
+    ]
+  }
+}</pre></details></td></tr><tr><td>node:main/delivery</td><td>label</td><td>Allowed</td><td><details><summary>Inspect values</summary><pre>{
+  &quot;before&quot;: &quot;Dispatcher\nSends the webhook&quot;,
+  &quot;after&quot;: &quot;Delivery worker\nSends the webhook&quot;
+}</pre></details></td></tr><tr><td>node:main/quarantine</td><td>added</td><td>Allowed</td><td><details><summary>Inspect values</summary><pre>{
+  &quot;before&quot;: null,
+  &quot;after&quot;: {
+    &quot;label&quot;: &quot;Quarantine\nRetains rejected events&quot;,
+    &quot;geometry&quot;: [
+      [
+        &quot;mxGeometry&quot;,
+        {
+          &quot;as&quot;: &quot;geometry&quot;,
+          &quot;height&quot;: &quot;90&quot;,
+          &quot;width&quot;: &quot;210&quot;,
+          &quot;x&quot;: &quot;315&quot;,
+          &quot;y&quot;: &quot;270&quot;
+        },
+        &quot;&quot;,
+        []
+      ]
+    ],
+    &quot;style&quot;: &quot;rounded=1;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#789089;fontColor=#172e36;fontSize=16;fontFamily=Arial;spacing=14;&quot;,
+    &quot;membership&quot;: &quot;platform&quot;,
+    &quot;source&quot;: null,
+    &quot;target&quot;: null,
+    &quot;content&quot;: [
+      &quot;mxCell&quot;,
+      {
+        &quot;id&quot;: &quot;quarantine&quot;,
+        &quot;vertex&quot;: &quot;1&quot;
+      },
+      &quot;&quot;,
+      []
+    ]
+  }
+}</pre></details></td></tr></tbody></table></section><section><h2>Required outcomes</h2><ul><li>PASS {&quot;entity&quot;: &quot;node:main/delivery&quot;, &quot;field&quot;: &quot;label&quot;, &quot;equals&quot;: &quot;Delivery worker\nSends the webhook&quot;}</li><li>PASS {&quot;entity&quot;: &quot;node:main/quarantine&quot;, &quot;field&quot;: &quot;membership&quot;, &quot;equals&quot;: &quot;platform&quot;}</li><li>PASS {&quot;entity&quot;: &quot;edge:main/reject&quot;, &quot;field&quot;: &quot;source&quot;, &quot;equals&quot;: &quot;delivery&quot;}</li><li>PASS {&quot;entity&quot;: &quot;edge:main/reject&quot;, &quot;field&quot;: &quot;target&quot;, &quot;equals&quot;: &quot;quarantine&quot;}</li><li>PASS {&quot;entity&quot;: &quot;edge:main/reject&quot;, &quot;field&quot;: &quot;label&quot;, &quot;equals&quot;: &quot;rejected&quot;}</li></ul></section><section><h2>Unused permissions</h2><p>None. Every allowed field corresponds to an actual change.</p><p>Remove unused allowances to narrow the contract; do not make unnecessary diagram changes to consume them.</p></section><section><h2>Preserved entities</h2><p>document:root, edge:main/consume, edge:main/publish, edge:main/send, layer:main/0, layer:main/1, node:main/endpoint, node:main/footer, node:main/inbox, node:main/platform, node:main/publisher, node:main/subtitle, node:main/title</p></section><section><h2>Source fingerprints</h2><p>Before: <code>e2dd8d896d9416146e83013eb5cc57452821982995e3604cd0d7bc790a288ef9</code><br>After: <code>9e092971acd7790049d349495f5c6338cd2bf002efb48013c0eecf6e1444dfde</code><br>Contract (canonical JSON): <code>f8345fb143deb40c69b754ffbe35dac58541f39e750e305e60a0835b3e11f010</code></p><p>A pass means this contract was satisfied. It does not establish that the contract matches the user request. Review the contract and render both sources before accepting the change.</p></section></main></html>

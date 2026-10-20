@@ -1,0 +1,235 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diagram Ledger · Revision report</title><style>body{font:16px/1.6 system-ui,sans-serif;color:#172a32;background:#f4f5f0;margin:0;padding:40px}main{max-width:1100px;margin:auto}h1{font-size:40px;line-height:1.15}small{color:#41545b}table{width:100%;border-collapse:collapse;background:white}td,th{text-align:left;padding:12px;border-bottom:1px solid #d7ded9;vertical-align:top}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}code{overflow-wrap:anywhere}a{color:#146052}.status{font-size:22px;font-weight:700}section{margin-top:32px}</style><main><small>DIAGRAM LEDGER / REVISION RECEIPT</small><h1>Rename Dispatcher and retain rejected events in a quarantine</h1><p class="status">PASS · 3 changes · 0 unexpected</p><p>Annotated SVG entities; exact source geometry/style and declared relationships. Remaining XML is protected as document content. Does not prove visual layout or infer relationships from arrow pixels.</p><p><a href="before.svg">Original source</a> · <a href="after.svg">Revised source</a> · <a href="report.json">Machine-readable report</a> · <a href="contract.json">Contract</a></p><section><h2>Changes</h2><table><thead><tr><th>Entity</th><th>Field</th><th>Decision</th><th>Evidence</th></tr></thead><tbody><tr><td>edge:reject</td><td>added</td><td>Allowed</td><td><details><summary>Inspect values</summary><pre>{
+  &quot;before&quot;: null,
+  &quot;after&quot;: {
+    &quot;label&quot;: &quot;rejected&quot;,
+    &quot;geometry&quot;: [
+      [
+        0,
+        &quot;g&quot;,
+        {}
+      ],
+      [
+        1,
+        &quot;path&quot;,
+        {
+          &quot;d&quot;: &quot;M730 285V425&quot;
+        }
+      ],
+      [
+        2,
+        &quot;text&quot;,
+        {
+          &quot;x&quot;: &quot;770&quot;,
+          &quot;y&quot;: &quot;354&quot;
+        }
+      ]
+    ],
+    &quot;style&quot;: [
+      [
+        0,
+        &quot;g&quot;,
+        {}
+      ],
+      [
+        1,
+        &quot;path&quot;,
+        {
+          &quot;fill&quot;: &quot;none&quot;,
+          &quot;marker-end&quot;: &quot;url(#arrow)&quot;,
+          &quot;stroke&quot;: &quot;#48636b&quot;,
+          &quot;stroke-width&quot;: &quot;2&quot;
+        }
+      ],
+      [
+        2,
+        &quot;text&quot;,
+        {
+          &quot;fill&quot;: &quot;#48636b&quot;,
+          &quot;font-size&quot;: &quot;13&quot;,
+          &quot;text-anchor&quot;: &quot;middle&quot;
+        }
+      ]
+    ],
+    &quot;membership&quot;: {
+      &quot;within&quot;: [],
+      &quot;outside&quot;: [],
+      &quot;ancestors&quot;: [
+        [
+          &quot;svg&quot;,
+          null,
+          0
+        ],
+        [
+          &quot;g&quot;,
+          null,
+          4
+        ]
+      ],
+      &quot;untracked_siblings_before&quot;: 3
+    },
+    &quot;source&quot;: &quot;delivery&quot;,
+    &quot;target&quot;: &quot;quarantine&quot;,
+    &quot;content&quot;: [
+      &quot;g&quot;,
+      {
+        &quot;data-edge&quot;: &quot;reject&quot;
+      },
+      &quot;&quot;,
+      [
+        [
+          [
+            &quot;path&quot;,
+            {
+              &quot;data-route&quot;: &quot;&quot;
+            },
+            &quot;&quot;,
+            []
+          ],
+          &quot;&quot;
+        ],
+        [
+          [
+            &quot;text&quot;,
+            {},
+            &quot;&quot;,
+            []
+          ],
+          &quot;&quot;
+        ]
+      ]
+    ]
+  }
+}</pre></details></td></tr><tr><td>node:delivery</td><td>label</td><td>Allowed</td><td><details><summary>Inspect values</summary><pre>{
+  &quot;before&quot;: &quot;Dispatcher Sends the webhook&quot;,
+  &quot;after&quot;: &quot;Delivery worker Sends the webhook&quot;
+}</pre></details></td></tr><tr><td>node:quarantine</td><td>added</td><td>Allowed</td><td><details><summary>Inspect values</summary><pre>{
+  &quot;before&quot;: null,
+  &quot;after&quot;: {
+    &quot;label&quot;: &quot;Quarantine Retains rejected events&quot;,
+    &quot;geometry&quot;: [
+      [
+        0,
+        &quot;g&quot;,
+        {}
+      ],
+      [
+        1,
+        &quot;rect&quot;,
+        {
+          &quot;height&quot;: &quot;90&quot;,
+          &quot;rx&quot;: &quot;12&quot;,
+          &quot;width&quot;: &quot;210&quot;,
+          &quot;x&quot;: &quot;625&quot;,
+          &quot;y&quot;: &quot;425&quot;
+        }
+      ],
+      [
+        2,
+        &quot;text&quot;,
+        {
+          &quot;x&quot;: &quot;645&quot;,
+          &quot;y&quot;: &quot;461&quot;
+        }
+      ],
+      [
+        3,
+        &quot;text&quot;,
+        {
+          &quot;x&quot;: &quot;645&quot;,
+          &quot;y&quot;: &quot;488&quot;
+        }
+      ]
+    ],
+    &quot;style&quot;: [
+      [
+        0,
+        &quot;g&quot;,
+        {}
+      ],
+      [
+        1,
+        &quot;rect&quot;,
+        {
+          &quot;fill&quot;: &quot;#e1eee6&quot;,
+          &quot;stroke&quot;: &quot;#789089&quot;
+        }
+      ],
+      [
+        2,
+        &quot;text&quot;,
+        {
+          &quot;font-size&quot;: &quot;18&quot;,
+          &quot;font-weight&quot;: &quot;700&quot;
+        }
+      ],
+      [
+        3,
+        &quot;text&quot;,
+        {
+          &quot;fill&quot;: &quot;#48636b&quot;,
+          &quot;font-size&quot;: &quot;14&quot;
+        }
+      ]
+    ],
+    &quot;membership&quot;: {
+      &quot;within&quot;: [
+        &quot;platform&quot;
+      ],
+      &quot;outside&quot;: [],
+      &quot;ancestors&quot;: [
+        [
+          &quot;svg&quot;,
+          null,
+          0
+        ],
+        [
+          &quot;g&quot;,
+          null,
+          4
+        ]
+      ],
+      &quot;untracked_siblings_before&quot;: 3
+    },
+    &quot;source&quot;: null,
+    &quot;target&quot;: null,
+    &quot;content&quot;: [
+      &quot;g&quot;,
+      {
+        &quot;data-node&quot;: &quot;quarantine&quot;,
+        &quot;id&quot;: &quot;quarantine&quot;
+      },
+      &quot;&quot;,
+      [
+        [
+          [
+            &quot;rect&quot;,
+            {
+              &quot;data-body&quot;: &quot;&quot;
+            },
+            &quot;&quot;,
+            []
+          ],
+          &quot;&quot;
+        ],
+        [
+          [
+            &quot;text&quot;,
+            {},
+            &quot;&quot;,
+            []
+          ],
+          &quot;&quot;
+        ],
+        [
+          [
+            &quot;text&quot;,
+            {},
+            &quot;&quot;,
+            []
+          ],
+          &quot;&quot;
+        ]
+      ]
+    ]
+  }
+}</pre></details></td></tr></tbody></table></section><section><h2>Required outcomes</h2><ul><li>PASS {&quot;entity&quot;: &quot;node:delivery&quot;, &quot;field&quot;: &quot;label&quot;, &quot;equals&quot;: &quot;Delivery worker Sends the webhook&quot;}</li><li>PASS {&quot;entity&quot;: &quot;node:quarantine&quot;, &quot;field&quot;: &quot;membership&quot;, &quot;equals&quot;: {&quot;within&quot;: [&quot;platform&quot;], &quot;outside&quot;: [], &quot;ancestors&quot;: [[&quot;svg&quot;, null, 0], [&quot;g&quot;, null, 4]], &quot;untracked_siblings_before&quot;: 3}}</li><li>PASS {&quot;entity&quot;: &quot;edge:reject&quot;, &quot;field&quot;: &quot;source&quot;, &quot;equals&quot;: &quot;delivery&quot;}</li><li>PASS {&quot;entity&quot;: &quot;edge:reject&quot;, &quot;field&quot;: &quot;target&quot;, &quot;equals&quot;: &quot;quarantine&quot;}</li><li>PASS {&quot;entity&quot;: &quot;edge:reject&quot;, &quot;field&quot;: &quot;label&quot;, &quot;equals&quot;: &quot;rejected&quot;}</li></ul></section><section><h2>Unused permissions</h2><p>None. Every allowed field corresponds to an actual change.</p><p>Remove unused allowances to narrow the contract; do not make unnecessary diagram changes to consume them.</p></section><section><h2>Preserved entities</h2><p>container:platform, document:root, edge:consume, edge:publish, edge:send, node:endpoint, node:inbox, node:publisher</p></section><section><h2>Source fingerprints</h2><p>Before: <code>e200dfa53b62f5f54c8ba3179a9a5502e4ede089404677f79b73e363a6e3ea75</code><br>After: <code>e6ebd8ca96b49f91b3a4b90585ae3195a092b0f2fcd78a2a3b5490fc8e456e1f</code><br>Contract (canonical JSON): <code>981d6b47d5904486b5aa58b3be988d0878ba9e9a8909a5b979419a307eb60522</code></p><p>A pass means this contract was satisfied. It does not establish that the contract matches the user request. Review the contract and render both sources before accepting the change.</p></section></main></html>
