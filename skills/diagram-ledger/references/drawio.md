@@ -23,7 +23,9 @@ Choose cylinder, diamond, actor, and other shapes only when they express the sel
 
 For a database cylinder, use `shape=cylinder3;size=16;boundedLbl=1;` with a sufficiently tall node. Do not combine the legacy `shape=cylinder` with that size setting: the native viewer can produce distorted curves even when the XML passes structural validation. The included service-map example uses the tested `cylinder3` form.
 
-XML-escape text and attribute values. Prefer `html=0` for ordinary labels. If rich HTML labels are needed, use `html=1`, escape their XML representation, and validate them in draw.io. Do not include scripts, external embeds, or active links from untrusted input.
+Use actual Unicode label text: `Core — API • worker → storage & logs`. Prefer `html=0` for ordinary labels. When using an XML serializer, pass that raw string to the `value` attribute; let the serializer escape reserved XML characters once. Do not run HTML escaping first. In hand-written XML, the label above becomes `value="Core — API • worker → storage &amp; logs"`. A numeric XML reference such as `&#8212;` also decodes correctly once, but `&amp;#8212;` becomes the visibly broken text `&#8212;` in a plain-text label.
+
+For rich HTML labels, use `html=1`: construct the HTML text correctly, then let the XML serializer encode the complete HTML string once for the attribute. Keep the HTML and XML layers distinct. Do not repeatedly unescape whole files or change label modes to conceal a problem; that can activate markup or change intended text. Inspect the final labels in draw.io. Do not include scripts, external embeds, or active links from untrusted input.
 
 ## Existing documents
 

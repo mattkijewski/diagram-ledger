@@ -10,6 +10,8 @@ Use `ShapeConnector` for new files; existing files may use the older `ShapeList`
 
 SmartDraw controls placement. Preserve the graph and labels, but do not promise exact source coordinates, layout stability or equivalent custom styling.
 
+Write `Label` and `LineLabel` as plain Unicode strings and serialize as JSON. Do not HTML-escape punctuation or ampersands; use `—`, `•`, `→` and `&` directly. Verify the resulting labels during import.
+
 ## Verify and deliver
 
 Run `python3 "<skill-directory>/scripts/check_diagram.py" diagram.vson`. This validates only the basic flowchart subset: structure, IDs, branch lists and return references. Native import is still required.

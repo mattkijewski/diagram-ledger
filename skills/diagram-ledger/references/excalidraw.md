@@ -8,6 +8,8 @@ Start from the original [review flow example](../assets/review-flow.excalidraw) 
 
 The file is a JSON object with `type: "excalidraw"`, `version: 2`, `source: "diagram-ledger"`, an `elements` array, an `appState` object and a `files` object. A self-contained shape-only diagram uses `files: {}`. Do not add collaboration state or unrelated editor preferences.
 
+Text fields contain plain Unicode, not HTML: use `—`, `•`, `→` and `&` directly in both `text` and `originalText`. Let the JSON serializer handle quotes and line breaks. HTML entities such as `&#8212;` or `&amp;` display literally here; JSON Unicode escapes such as `\u2014` are different and decode normally.
+
 - Give each element a unique, stable string `id`. Keep IDs when revising or renaming. Preserve `seed` so unchanged strokes do not acquire a different sketch shape. Use numeric coordinates and dimensions, not strings or NaN.
 - For a new drawing, prefer rectangles, diamonds, ellipses, text and simple arrows. The bundled checker supports those plus lines. It intentionally does not validate images, freehand strokes, frames, embedded content or every native editor feature. Preserve those features in imported drawings and report the checker limitation instead of deleting them.
 - Bound node labels are separate `text` elements: set `containerId` to the shape ID and add `{"id": "LABEL_ID", "type": "text"}` to the shape's `boundElements`. An arrow label may use the same mechanism with the arrow as its container. Keep `text` and `originalText` consistent. Set positive `fontSize` and `lineHeight`, alignment and sufficient text bounds.

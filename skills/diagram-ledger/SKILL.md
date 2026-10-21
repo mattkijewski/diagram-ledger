@@ -2,7 +2,7 @@
 name: diagram-ledger
 description: Brainstorm, create, revise, and explain architecture diagrams, flowcharts, sequences, state machines, data models, swimlanes, timelines, and concept maps. Use for exploring a new project through diagrams or drawing, redesigning, and converting draw.io, Excalidraw, Mermaid or SVG, with beta import workflows for Lucidchart and SmartDraw.
 metadata:
-  version: "3.2.1"
+  version: "3.2.2"
 ---
 
 # Diagram Ledger
@@ -104,6 +104,7 @@ Use the [example collection](assets/README.md) for worked examples of the chosen
 - **Structure:** For generated uncompressed draw.io, Excalidraw, standalone SVG, or HTML with inline SVG, run `python3 "<skill-directory>/scripts/check_diagram.py" "<output-file>"` if Python is available. The Excalidraw check covers the basic shape/text/arrow subset described in its guide. This is a structural check, not a renderer or a visual audit. For Mermaid, parse/render with the project's installed renderer when available.
 - **Beta imports:** The same checker accepts basic SmartDraw `.vson` flowcharts. Lucidchart preparation uses the draw.io check; neither check proves import fidelity or editability inside the destination application. Follow the selected destination guide and report application testing as pending until it actually occurs.
 - **Appearance:** Render in the target application or an available local preview. Inspect at the intended display size for clipped labels, colliding objects, ambiguous routes, empty margins, and contrast. Repair observable problems and inspect again. Do not claim this check passed if no renderer was available.
+- **Label encoding:** Use actual Unicode punctuation in labels and let the format serializer escape once. Investigate checker findings about literal entities such as `&#8212;` or `&amp;`; do not repeatedly decode whole files. If the user intentionally wants entity codes visible, verify that intent and use `--allow-literal-entities` for that check. Other structural checks still apply.
 - **Delivery:** Link the editable source and any requested export. Include a short reading summary, material assumptions or conversion losses, and what validation was actually performed. Do not claim universal compatibility based only on XML/JSON parsing.
 
 For a supported revision, run the receipt check with `--require-outcomes` and deliver a receipt whose after-source fingerprint matches the final linked source, including after visual repairs. Keep notes and preview links pointed at that same version; do not reuse an earlier receipt as evidence for a newer file.

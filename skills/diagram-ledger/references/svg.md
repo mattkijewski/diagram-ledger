@@ -8,6 +8,8 @@ Give the root `role="img"` and `aria-labelledby` referencing a meaningful `title
 
 Use real `text` with explicit `tspan` line breaks; SVG does not reliably wrap text automatically. Keep actual Unicode characters and XML-escape reserved characters. Use local/system font stacks. Set colors and critical typography on exported elements or a self-contained stylesheet; do not rely on the surrounding webpage.
 
+Pass raw text to an XML serializer and let it escape once. Use `—`, `•` and `→` directly; `&amp;#8212;` would display the literal code `&#8212;`. In hand-written XML, encode a literal ampersand as `&amp;`; do not pre-escape strings passed to a serializer. Repair affected text nodes individually, preserving any intentionally displayed code examples.
+
 Define arrowheads in `defs` and attach them using local `url(#id)` references. Draw group surfaces first, then routed connections, then nodes and labels. That layering does not excuse routes through unrelated nodes. Route around them. Choose marker size, stroke width, and attachment points together so the arrowhead lands at the intended boundary.
 
 Keep gradients, filters, animation, remote assets, `foreignObject`, and scripts out of the default output. They complicate portability and are unnecessary for ordinary diagrams. Adapt this only to an explicit need, with an appropriate viewer/export check.

@@ -2,7 +2,7 @@
 
 **Draw clearly. Revise deliberately. Leave a record.**
 
-**Version 3.2.1:** brainstorm through conversation, keep diagrams and notes together, and generate all-format bundles. Lucidchart and SmartDraw import options remain **beta**, with destination-app testing pending. See the [import test guide](docs/IMPORT-TESTING.md).
+**Version 3.2.2:** brainstorm through conversation, keep diagrams and notes together, and generate all-format bundles. Lucidchart and SmartDraw import options remain **beta**, with destination-app testing pending. See the [import test guide](docs/IMPORT-TESTING.md).
 
 A portable diagram skill for **Claude Code and Cursor**. Create editable draw.io, Excalidraw, Mermaid or SVG diagrams, then revise them without silently rearranging the owner's work. No marketplace setup or MCP server is required.
 
@@ -292,6 +292,8 @@ A pass proves that this file pair satisfies **this contract**. It does not prove
 ## Verification
 
 Core checks use only Python's standard library. Optional measured previews use Node.js 18+, Playwright and Chrome/Chromium; no utility downloads dependencies.
+
+The checker also flags likely over-escaped labels, such as visible `&#8212;` instead of an em dash. Use actual Unicode text and let the XML or JSON serializer escape it once. If a diagram intentionally teaches entity codes, review its labels and pass `--allow-literal-entities`; other structural checks still run. The checker reports problems without rewriting the source.
 
 ```sh
 python3 scripts/run_tests.py
