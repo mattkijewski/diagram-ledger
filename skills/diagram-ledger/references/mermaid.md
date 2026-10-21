@@ -18,3 +18,7 @@ Accept that Mermaid owns placement. If the user needs precise art direction, cho
 Use a locally available Mermaid preview or CLI to validate. For an installed CLI, a typical command is `mmdc -i diagram.mmd -o diagram.svg`; check its local help and project settings as needed. Do not run an unpinned `npx` install silently. If no renderer is available, review syntax and semantics, deliver the source, and say rendering remains unverified. The bundled XML checker does not validate Mermaid.
 
 When using unfamiliar syntax, check it against the installed renderer and its supported diagram types.
+
+## Final layout gate
+
+Run the unified [layout gate](layout-checks.md) on `.mmd` or Markdown source after the final edit. It uses the pinned native renderer, measures labels and routes, and checks every Mermaid block. Supported families are flowchart, sequence, state and ER. It uses opaque edge-label backgrounds and records that preview setting; inspect the final destination too if its renderer differs. A parse pass alone is not a layout pass.

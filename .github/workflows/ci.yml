@@ -42,9 +42,9 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.14'
-      - name: Install optional preview dependency
+      - name: Install pinned local preview dependencies
         run: |
-          npm install --prefix "$RUNNER_TEMP/diagram-ledger-tools" playwright@1.62.1
+          npm install --prefix "$RUNNER_TEMP/diagram-ledger-tools" --save-exact playwright@1.62.1 @excalidraw/excalidraw@0.18.0 mermaid@12.2.0 esbuild@0.25.12 react@18.3.1 react-dom@18.3.1
           echo "DIAGRAM_LEDGER_NODE_MODULES=$RUNNER_TEMP/diagram-ledger-tools/node_modules" >> "$GITHUB_ENV"
       - name: Install pinned draw.io viewer for native layout tests
         run: python skills/diagram-ledger/scripts/setup_drawio.py --install

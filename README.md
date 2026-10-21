@@ -2,7 +2,7 @@
 
 **Draw clearly. Revise deliberately. Leave a record.**
 
-**Version 3.3.0:** native draw.io layout checks catch connectors crossing labels or unrelated boxes before delivery, with per-page previews and source-hashed audit reports. Lucidchart and SmartDraw import options remain **beta**, with destination-app testing pending. See the [import test guide](docs/IMPORT-TESTING.md).
+**Version 3.4.0:** one layout gate covers every selected destination, with native draw.io, Excalidraw and Mermaid rendering plus strict SVG/HTML checks. Audits catch lines crossing text or unrelated boxes and keep pending Lucidchart/SmartDraw import checks explicit. See [coverage and setup](skills/diagram-ledger/references/layout-checks.md).
 
 A portable diagram skill for **Claude Code and Cursor**. Create editable draw.io, Excalidraw, Mermaid or SVG diagrams, then revise them without silently rearranging the owner's work. No marketplace setup or MCP server is required.
 
@@ -291,44 +291,42 @@ A pass proves that this file pair satisfies **this contract**. It does not prove
 
 ## Verification
 
-Core checks use only Python's standard library. Optional measured previews use Node.js 18+, Playwright and Chrome/Chromium; no utility downloads dependencies.
+Core checks use Python 3.9+ and its standard library. Optional measured previews use Node.js 22+, local native renderer packages, Playwright and Chrome/Chromium. Claude must check **each selected output**, inspect its audit and image, repair actionable findings, and rerun after the last edit.
 
-For draw.io, the optional native renderer now checks **lines crossing text, lines through unrelated boxes, and overlapping labels** on every page. Claude must inspect the audit and preview, repair actionable findings, and rerun before describing the layout as verified. Missing dependencies or unsupported content are reported as unverified.
-
-One-time setup from this checkout (or the portable package):
+One-time setup from this checkout or portable package:
 
 ```sh
-npm install --prefix .diagram-ledger-tools playwright@1.62.1
+npm install --prefix .diagram-ledger-tools --save-exact playwright@1.62.1 @excalidraw/excalidraw@0.18.0 mermaid@12.2.0 esbuild@0.25.12 react@18.3.1 react-dom@18.3.1
 python3 skills/diagram-ledger/scripts/setup_drawio.py --install
 ```
 
-Then, with Chrome installed:
+Then, with Chrome installed, check one source or pass several sources together:
 
 ```sh
-node skills/diagram-ledger/scripts/render_drawio.mjs diagrams/service-architecture/service-architecture.drawio --out diagrams/service-architecture/exports/layout-check-01 --browser chrome --modules .diagram-ledger-tools/node_modules
+python3 skills/diagram-ledger/scripts/check_layout.py diagrams/service-architecture/service-architecture.drawio diagrams/service-architecture/service-architecture.excalidraw diagrams/service-architecture/service-architecture.mmd diagrams/service-architecture/service-architecture.svg --out diagrams/service-architecture/exports/layout-check-01 --modules .diagram-ledger-tools/node_modules
 ```
 
-Use a fresh output folder for each run. The command produces per-page PNG/SVG previews and `audit.json`, including the source hash and problem cell IDs. It exits nonzero on findings. Rendering stays local; the setup downloads a pinned viewer separately from the skill ZIPs. See [setup, supported geometry and limitations](skills/diagram-ledger/references/drawio-layout.md). On Windows, replace `python3` with `py -3`. Existing Playwright installations can be reused with `--modules`.
+Use a fresh output directory each time. The summary links detailed audits and native PNG/SVG previews and records source hashes. Every supplied output is checked; any failure, unsupported content, missing runtime or pending import produces a nonzero exit. Rendering stays local after setup. Dependencies are installed separately from the ZIPs. Reuse an existing installation with `--modules` or `DIAGRAM_LEDGER_NODE_MODULES`; on Windows use `py -3` instead of `python3`.
 
-The checker also flags likely over-escaped labels, such as visible `&#8212;` instead of an em dash. Use actual Unicode text and let the XML or JSON serializer escape it once. If a diagram intentionally teaches entity codes, review its labels and pass `--allow-literal-entities`; other structural checks still run. The checker reports problems without rewriting the source.
+| Destination | Layout verification |
+| --- | --- |
+| draw.io | Native viewer checks every page |
+| Excalidraw | Native SVG export measures basic shapes, text and arrow strokes |
+| Mermaid | Native flowchart, sequence, state and ER rendering; every Markdown block |
+| SVG / HTML | Strict browser checks; annotate routes and boundaries |
+| Lucidchart | Checks its draw.io source; **native import review still required** |
+| SmartDraw | Checks VSON structure; **native import review required** because import determines layout |
+
+Mermaid previews use opaque edge-label backgrounds. Destination hosts can render differently. No automated pass replaces image review or proves system meaning. See the [full coverage and limitations](skills/diagram-ledger/references/layout-checks.md), including unsupported elements and native import evidence.
+
+The structural checker also flags over-escaped labels such as visible `&#8212;`. Use actual Unicode and serialize once. For intentional entity-code examples, review the labels and run the structural checker with `--allow-literal-entities`; this exception does not bypass the unified layout gate.
 
 ```sh
 python3 scripts/run_tests.py
-python3 skills/diagram-ledger/scripts/check_diagram.py diagrams/payment-service-architecture/payment-service-architecture.drawio
-python3 skills/diagram-ledger/scripts/check_diagram.py diagrams/content-review-flow/content-review-flow.excalidraw
-node skills/diagram-ledger/scripts/render.mjs diagrams/content-review-flow/content-review-flow.svg --out diagrams/content-review-flow/exports/svg --browser chrome --strict yes
+python3 skills/diagram-ledger/scripts/check_diagram.py diagrams/service-architecture/service-architecture.drawio
 ```
 
-Pass `--modules /path/to/node_modules` if Playwright is outside Node's lookup paths. To install optional tooling in a separate folder yourself:
-
-```sh
-npm install --prefix .diagram-ledger-tools playwright@1.62.1
-node skills/diagram-ledger/scripts/render.mjs diagrams/content-review-flow/content-review-flow.svg --out diagrams/content-review-flow/exports/svg --browser chrome --modules .diagram-ledger-tools/node_modules
-```
-
-The SVG/HTML renderer uses an existing Chrome, blocks HTTP(S), disables page scripts and produces PNG, JSON audit and standalone SVG exports. It measures text bounds, contrast, annotated connections and boundary containment. Native draw.io, Excalidraw and Mermaid previews use their corresponding applications/renderers. Structural checks are not renderers; none of these tools is a security sanitizer.
-
-Set `DIAGRAM_LEDGER_BROWSER_TESTS=1` and optionally `DIAGRAM_LEDGER_NODE_MODULES=/path/to/node_modules` to run the browser regression tests. Otherwise they are explicitly skipped.
+Set `DIAGRAM_LEDGER_BROWSER_TESTS=1` and `DIAGRAM_LEDGER_NODE_MODULES=/path/to/node_modules` to include browser regressions. Otherwise those tests are explicitly skipped. The renderers never install dependencies automatically and are not security sanitizers.
 
 ## Evidence and scope
 

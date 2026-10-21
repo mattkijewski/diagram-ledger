@@ -1,6 +1,6 @@
 # Test the Lucidchart and SmartDraw beta imports
 
-Included in **3.3.0** as beta import workflows. Structural checks pass; import fidelity and editability in Lucidchart/SmartDraw remain unverified. Use this guide to test the samples and your generated diagrams in the destination apps.
+Included in **3.4.0** as beta import workflows. Structural checks pass; import fidelity and editability in Lucidchart/SmartDraw remain unverified. Use this guide to test the samples and your generated diagrams in the destination apps.
 
 ## 1. Try the prepared samples first
 
@@ -35,7 +35,7 @@ The sample uses `ShapeConnector`; existing files may use `ShapeList`. If the imp
 
 ## 2. Test generation in Claude Code or Cursor
 
-Download the [3.3.0 portable ZIP](https://github.com/mattkijewski/diagram-ledger/releases/download/v3.3.0/diagram-ledger-portable.zip), extract it and run the installer from its `diagram-ledger-package` directory:
+Download the [3.4.0 portable ZIP](https://github.com/mattkijewski/diagram-ledger/releases/download/v3.4.0/diagram-ledger-portable.zip), extract it and run the installer from its `diagram-ledger-package` directory:
 
 ```sh
 python3 install.py --target both --scope user --update

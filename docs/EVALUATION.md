@@ -1,12 +1,14 @@
 # Validation and scope
 
-This document describes checks for Diagram Ledger 3.3.0. Automated tests, model behavior and native application compatibility are separate forms of evidence.
+This document describes checks for Diagram Ledger 3.4.0. Automated tests, model behavior and native application compatibility are separate forms of evidence.
 
 ## Automated checks
 
 The regression suite covers diagram structure, malformed input, element bindings, revision preservation, required outcomes, installer backups and rollback, gallery rebuilding and Unicode handling. Label-encoding cases cover single XML escaping, HTML labels, JSON Unicode strings, visibly over-escaped text and the explicit exception for intentional entity-code examples. Optional browser tests check measured rendering, route collisions and containment. Native draw.io cases cover crossing and repaired routes, rich HTML labels, opaque edge-label backgrounds, nested containers, repeated cell IDs across pages, invalid/compressed input and blocked remote content. Pure geometry tests cover horizontal, vertical, diagonal and very long segments; setup tests verify explicit downloads and checksum rejection.
 
 Release verification checks local references, example sources, bundled revision receipts, archive contents and SHA-256 fingerprints. The build produces reproducible skill and portable ZIPs. GitHub CI runs core checks on Linux with Python 3.9 and 3.14, Windows with Python 3.14, and browser checks on Linux. Consult the release notes and CI result for the exact release's outcome.
+
+Cross-format regressions exercise native Excalidraw text and node collisions, local fonts, four Mermaid families, invalid Mermaid/configuration, Markdown with multiple diagrams, strict SVG/HTML routing, and explicit pending native-import status. The renderer pins Excalidraw 0.18.0 and Mermaid 12.2.0; the latter uses opaque edge-label backgrounds. [Layout coverage](../skills/diagram-ledger/references/layout-checks.md) lists unsupported geometry and destination differences. These checks do not establish native Lucidchart or SmartDraw results.
 
 ## Workflows exercised
 

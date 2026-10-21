@@ -69,3 +69,7 @@ Limitations: shape bounding boxes are not exact polygons; sample-based intersect
 ## Targeted revisions
 
 Read [revision.md](revision.md) when changing an existing drawing. Compare stable IDs, geometry, and relationships before and after. A correction that improves one route but breaks another is not finished.
+
+## Final layout gate
+
+For every selected destination, start with the unified [layout gate](layout-checks.md). It invokes this strict SVG/HTML renderer and the corresponding native renderers for other formats, keeping pending app imports separate from source passes.

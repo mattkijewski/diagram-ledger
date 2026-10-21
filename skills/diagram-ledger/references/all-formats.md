@@ -26,7 +26,7 @@ Use this workflow for “All formats,” “all,” menu choice 7, or an explici
 
 ## Check and hand off
 
-Run the applicable structural checker separately on each supported source. Parse/render Mermaid when its renderer is available. Reconcile every source against the inventory: nodes, directions, labels, branches and containment must agree, or have an explicit format limitation. Render and inspect each with an available compatible renderer; record unavailable rendering and pending native imports separately from structural passes.
+Run the [unified layout gate](layout-checks.md) with **every selected source** after the final edit. Read the summary and each detailed audit, inspect every available preview, and repair findings. Record per-format source hashes, reports and preview links in the bundle index. Lucidchart and SmartDraw stay `native-check-required` until actual destination-app review is recorded; this intentionally prevents an all-format bundle from claiming full verification from local checks alone. Run the applicable structural checker separately on each supported source. Parse/render Mermaid when its renderer is available. Reconcile every source against the inventory: nodes, directions, labels, branches and containment must agree, or have an explicit format limitation. Render and inspect each with an available compatible renderer; record unavailable rendering and pending native imports separately from structural passes.
 
 Link the bundle index and summarize which sources were produced, which checks ran and any unsupported outputs. Source generation is not proof of native app import or visual equivalence. Generate previews only when useful or requested, without silently installing dependencies.
 

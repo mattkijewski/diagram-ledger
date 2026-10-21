@@ -19,3 +19,7 @@ Run `python3 "<skill-directory>/scripts/check_diagram.py" diagram.vson`. This va
 For the user: in SmartDraw, select **+ → Insert Content → Add Data Visualization → VisualScript**, then upload the `.vson`. Inspect labels and branches, move a node and edit its text. Deliver the source and a brief inventory so the imported graph can be compared.
 
 Keep the source and a manual change log for revisions. Automated revision receipts do not cover VSON or the resulting SmartDraw document. This beta does not validate floor plans, tables, frames, custom symbols or every VisualScript feature; do not delete imported features just to pass the narrow checker. Application import/editability testing remains pending.
+
+## Final layout gate
+
+Run the unified [layout gate](layout-checks.md) on the `.vson` source. It validates structure and returns `native-check-required`: VSON has no authoritative local coordinates to audit because SmartDraw places the objects on import. Inspect the actual imported diagram for overlapping text, routes and arrowheads, repair and reimport as needed, and record the exact source hash with native screenshot/export evidence. Do not use another format's preview as proof of SmartDraw layout.

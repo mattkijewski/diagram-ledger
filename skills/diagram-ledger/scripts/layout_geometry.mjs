@@ -1,4 +1,4 @@
-/** Geometry for rendered draw.io states. Coordinates are native canvas pixels. */
+/** Geometry for rendered diagram states. Coordinates are native canvas pixels. */
 export function segmentIntersectsBox(a, b, box, inset = 1) {
   if (!a || !b || !box) return false;
   const left = box.x + inset, right = box.x + box.width - inset;
@@ -27,11 +27,12 @@ export function auditLayout(states) {
   const routeTextCollisions=[],routeNodeCollisions=[],textOverlaps=[],unsupported=[];
   for(const edge of edges) {
     if(edge.curved) {unsupported.push({cell:edge.id,problem:'Curved connector requires native visual review; polyline audit cannot certify it.'});continue;}
-    if(!edge.points || edge.points.length<2 || edge.points.some(p=>!p || !Number.isFinite(p.x) || !Number.isFinite(p.y))) {unsupported.push({cell:edge.id,problem:'Connector has no measurable rendered path.'});continue;}
-    const crosses=box=>edge.points.some((p,i)=>i>0 && segmentIntersectsBox(edge.points[i-1],p,box));
+    const routes=edge.routes || [edge.points];
+    if(!routes.length || routes.some(points=>!points || points.length<2 || points.some(p=>!p || !Number.isFinite(p.x) || !Number.isFinite(p.y)))) {unsupported.push({cell:edge.id,problem:'Connector has no measurable rendered path.'});continue;}
+    const crosses=box=>routes.some(points=>points.some((p,i)=>i>0 && segmentIntersectsBox(points[i-1],p,box)));
     for(const label of labels) {
       // The renderer confirms an opaque native background for this edge's own label.
-      if(label.id===edge.id && label.opaqueLabel)continue;
+      if((label.id===edge.id && label.opaqueLabel) || label.maskedByEdges?.includes(edge.id))continue;
       if(crosses(label.text))routeTextCollisions.push({edge:edge.id,label:label.id,text:label.label});
     }
     for(const node of vertices) {

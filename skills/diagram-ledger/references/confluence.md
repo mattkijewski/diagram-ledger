@@ -20,3 +20,7 @@ Do not add Confluence as a separate format choice or require another diagram too
 Creating local files does not itself publish them to Confluence. Upload or edit a page only when the user requests that action. Do not claim the integration was tested merely because the source passed local checks.
 
 These instructions cover Confluence Cloud. For Data Center, use the installed app's matching documentation rather than assuming Cloud menus or plan requirements apply.
+
+## Final layout gate
+
+Apply the [layout gate](layout-checks.md) to the selected source format before publishing, then inspect the actual Confluence embed or attached preview at its displayed width. A local source pass does not prove that an integration or scaled page display stays readable.

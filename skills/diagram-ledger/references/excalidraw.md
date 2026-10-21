@@ -38,3 +38,7 @@ Open the file in an available Excalidraw editor using **Open** or by dropping th
 Retain an exact original, write down allowed changes, edit a separate copy, and review a source diff plus both native renders. Preserve IDs, coordinates, grouping, bindings, seeds and unrelated styles. Do not flatten a scene to SVG or an image merely to simplify editing.
 
 `revision.py` does **not** support Excalidraw revision contracts. Deliver a manual change log with the source pair and identify this limit. A structural pass is not a field-preservation receipt. For conversion, reconcile every node, edge, label and group; explain any unsupported notation.
+
+## Final layout gate
+
+Run the unified [layout gate](layout-checks.md) after structural validation. It exports with native Excalidraw, measures actual labels and arrow strokes, and catches collisions before delivery. Inspect its preview and rerun after repairs. Unsupported elements or bound arrow masks remain unverified; keep them intact and review in the editor.

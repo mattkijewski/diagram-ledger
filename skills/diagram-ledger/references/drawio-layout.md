@@ -53,3 +53,7 @@ The supported input is uncompressed `mxfile` XML with direct cells, basic shapes
 The audit uses label rectangles and line centerlines. Rounded bends are approximated by their segments; nonrectangular node boundaries are approximated by their boxes. Opaque backgrounds on other labels do not excuse wrong routes. Curved connectors, hidden/collapsed content, unsupported shapes, math typesetting, compressed pages and object wrappers cannot receive a clean automatic result. Expand/export a supported copy only when meaning can be preserved; otherwise report native review as required. Remote images, fonts and other resources are blocked.
 
 A pass does not prove semantic accuracy, readable zoom level, perfect arrowheads, zero line-to-line crossings or Lucidchart import fidelity. Inspect the preview at an appropriate scale and read the full-size SVG when the overview is reduced. Excalidraw, Mermaid and SmartDraw still need their own native visual checks; this renderer does not certify them. SVG/HTML use the separate `render.mjs --strict yes` workflow in [verification.md](verification.md).
+
+## Final layout gate
+
+The unified [layout gate](layout-checks.md) invokes this renderer for draw.io and Lucidchart import sources. It also checks the other selected formats; a clean draw.io report does not certify their layouts.

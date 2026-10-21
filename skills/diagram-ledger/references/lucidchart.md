@@ -17,3 +17,7 @@ Do not rename arbitrary JSON to `.lucid`. Lucid's Standard Import is a separate 
 For revisions, retain the draw.io source and the imported document separately. A draw.io revision receipt applies only to that source pair, never to Lucidchart's resulting document. If the user edited in Lucidchart, use a new export as the baseline; do not assume the previous local source still represents it.
 
 Status: destination import and editing are awaiting user testing. Report any conversion losses instead of promising identical layout.
+
+## Final layout gate
+
+Run the unified [layout gate](layout-checks.md) on the `-lucidchart.drawio` source. A passing draw.io render is recorded as source-layout pass with `native-check-required` for Lucidchart. Import into Lucidchart, inspect lines and labels at the intended size, and record the exact source hash plus a native screenshot/export in the bundle index. If app access is unavailable, keep the native check pending.

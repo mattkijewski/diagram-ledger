@@ -19,3 +19,7 @@ If a web wrapper is requested, use an accessible figure with a caption. Put a wi
 Run `python3 "<skill-directory>/scripts/check_diagram.py" output.svg` for basic structural checks. The checker verifies XML, IDs, accessible naming, finite positive canvas dimensions, and local reference targets. It rejects active content and obvious external dependencies in its supported static subset. It is not a security sanitizer and does not measure geometry, compute contrast, or detect label collisions.
 
 Render and inspect at the intended delivery size. Verify font fallback, non-Latin labels, marker clipping, and background contrast. Generate raster/PDF exports from the final source with an available renderer; deliver the SVG as well. Do not imply that an independently drawn preview is an exact export of a draw.io source.
+
+## Final layout gate
+
+Run the unified [layout gate](layout-checks.md) on the final SVG/HTML source. It invokes the strict browser audit; annotate connections and boundaries as described in the verification guide. Inspect the preview and repair findings before delivery.
