@@ -36,3 +36,7 @@ benchmarks/competitive/snapshots/
 /GATES.md
 /.env
 /.env.*
+
+# Optional local renderer dependencies and generated project diagrams.
+/.diagram-ledger-tools/
+/diagrams/

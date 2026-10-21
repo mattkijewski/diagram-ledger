@@ -35,4 +35,6 @@ Read all requested pages before editing. Existing files can use compressed `diag
 
 Run `python3 "<skill-directory>/scripts/check_diagram.py" output.drawio`. It verifies basic graph structure, unique IDs, parent/endpoint references, parent cycles, and positive node dimensions. It does not inspect text fitting, visual intersections, or graph meaning.
 
+Run the native [rendered layout check](drawio-layout.md) before delivery when its local dependencies are available. It measures actual routes and text, rejects actionable collisions, and produces per-page previews plus a source-hashed audit. Repair and rerun after the final edit; a structural pass alone is insufficient.
+
 Open in draw.io/diagrams.net if available and inspect before exporting. Use the installed application's export interface or documented CLI if present; do not assume a `drawio` executable is installed.

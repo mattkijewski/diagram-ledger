@@ -2,6 +2,8 @@
 
 The reliable loop is: write source → run structural checks → render → inspect measured findings and image → repair source → render again. A final preview must match the final source, not an earlier revision.
 
+For draw.io sources, use the native [draw.io layout workflow](drawio-layout.md). The SVG/HTML renderer below does not import draw.io.
+
 ## Local preview
 
 The optional renderer uses an existing Playwright installation and browser. It does not download dependencies. Typical use:

@@ -46,6 +46,8 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/diagram-ledger-tools" playwright@1.62.1
           echo "DIAGRAM_LEDGER_NODE_MODULES=$RUNNER_TEMP/diagram-ledger-tools/node_modules" >> "$GITHUB_ENV"
+      - name: Install pinned draw.io viewer for native layout tests
+        run: python skills/diagram-ledger/scripts/setup_drawio.py --install
       - name: Run all tests using the runner's installed Chrome
         env:
           DIAGRAM_LEDGER_BROWSER_TESTS: '1'

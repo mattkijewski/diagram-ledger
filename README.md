@@ -2,7 +2,7 @@
 
 **Draw clearly. Revise deliberately. Leave a record.**
 
-**Version 3.2.2:** brainstorm through conversation, keep diagrams and notes together, and generate all-format bundles. Lucidchart and SmartDraw import options remain **beta**, with destination-app testing pending. See the [import test guide](docs/IMPORT-TESTING.md).
+**Version 3.3.0:** native draw.io layout checks catch connectors crossing labels or unrelated boxes before delivery, with per-page previews and source-hashed audit reports. Lucidchart and SmartDraw import options remain **beta**, with destination-app testing pending. See the [import test guide](docs/IMPORT-TESTING.md).
 
 A portable diagram skill for **Claude Code and Cursor**. Create editable draw.io, Excalidraw, Mermaid or SVG diagrams, then revise them without silently rearranging the owner's work. No marketplace setup or MCP server is required.
 
@@ -292,6 +292,23 @@ A pass proves that this file pair satisfies **this contract**. It does not prove
 ## Verification
 
 Core checks use only Python's standard library. Optional measured previews use Node.js 18+, Playwright and Chrome/Chromium; no utility downloads dependencies.
+
+For draw.io, the optional native renderer now checks **lines crossing text, lines through unrelated boxes, and overlapping labels** on every page. Claude must inspect the audit and preview, repair actionable findings, and rerun before describing the layout as verified. Missing dependencies or unsupported content are reported as unverified.
+
+One-time setup from this checkout (or the portable package):
+
+```sh
+npm install --prefix .diagram-ledger-tools playwright@1.62.1
+python3 skills/diagram-ledger/scripts/setup_drawio.py --install
+```
+
+Then, with Chrome installed:
+
+```sh
+node skills/diagram-ledger/scripts/render_drawio.mjs diagrams/service-architecture/service-architecture.drawio --out diagrams/service-architecture/exports/layout-check-01 --browser chrome --modules .diagram-ledger-tools/node_modules
+```
+
+Use a fresh output folder for each run. The command produces per-page PNG/SVG previews and `audit.json`, including the source hash and problem cell IDs. It exits nonzero on findings. Rendering stays local; the setup downloads a pinned viewer separately from the skill ZIPs. See [setup, supported geometry and limitations](skills/diagram-ledger/references/drawio-layout.md). On Windows, replace `python3` with `py -3`. Existing Playwright installations can be reused with `--modules`.
 
 The checker also flags likely over-escaped labels, such as visible `&#8212;` instead of an em dash. Use actual Unicode text and let the XML or JSON serializer escape it once. If a diagram intentionally teaches entity codes, review its labels and pass `--allow-literal-entities`; other structural checks still run. The checker reports problems without rewriting the source.
 
